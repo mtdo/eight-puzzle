@@ -67,8 +67,7 @@ class Solver:
             return "Solution does not exist."
         
     def solve(self):
-        """A* algorithm for solving the puzzle. Algorithm follows the structure
-        presented in the lecture slides."""
+        """Algorithm for solving the 8-puzzle."""
         
         # Set costs for the starting state
         current = self.start
