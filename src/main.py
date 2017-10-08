@@ -20,7 +20,7 @@ def main(argv):
     try:
         opts, args = getopt.getopt(argv, "hri:a:")
     except getopt.GetoptError:
-        print("main.py [-r] [-i=input_file]")
+        print("main.py [-r] [-i=input_file] [-a=algorithm]")
         sys.exit(1)
         
     # Solve the 8-puzzle with the given arguments
@@ -30,7 +30,7 @@ def main(argv):
     for opt, arg in opts:
         # Help
         if opt == "-h":
-            print("main.py [-r] [-i=input_file]")
+            print("main.py [-r] [-i=input_file] [-a=algorithm]")
             sys.exit()
             
         # Random
