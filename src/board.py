@@ -64,3 +64,4 @@ class Board:
                     not in neighbour_states)):
                     neighbour_states.append(Board(neighbour_state, self))
         return neighbour_states
+

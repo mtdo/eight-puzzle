@@ -129,3 +129,4 @@ class Solver:
                 OPENF[str(successor.tiles)] = successor.f
                           
         return self.checkSolution(best, current, len(CLOSED))
+

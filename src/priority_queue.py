@@ -25,3 +25,4 @@ class PriorityQueue:
         """Returns the length of the elements in the priority queue."""
         
         return len(self.elements)
+
