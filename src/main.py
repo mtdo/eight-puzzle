@@ -42,20 +42,20 @@ def main(argv):
             starting_state = eval(f.read())
             f.close()
         
-        # Initialize board
-        board = Board(starting_state)
-        n_zeros = len(board.getEmptyCells())
-        
-        # Initialize solver
-        solver = Solver(board)
-        
-        # Solve puzzle
-        start_time = time.time()
-        print(solver.solve())
-        end_time = time.time()
-        
-        print("Elapsed time: " + str(round((end_time - start_time),4)) + "s.")
-        print("Starting board had " + str(n_zeros) + " spaces.")
+    # Initialize board
+    board = Board(starting_state)
+    n_zeros = len(board.getEmptyCells())
+    
+    # Initialize solver
+    solver = Solver(board)
+    
+    # Solve puzzle
+    start_time = time.time()
+    print(solver.solve())
+    end_time = time.time()
+    
+    print("Elapsed time: " + str(round((end_time - start_time),4)) + "s.")
+    print("Starting board had " + str(n_zeros) + " spaces.")
 
 if __name__ == "__main__":
     main(sys.argv[1:])
