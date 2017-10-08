@@ -8,11 +8,13 @@ from math import inf
 class Solver:
     """Class for solving the 8-puzzle."""
     
-    def __init__(self, start):
+    def __init__(self, start, A = 1, B = 1):
         """Class is initialized with a starting game board."""
         
         self.start = start
         self.goal = self.getGoalState(start)
+        self.A = A # Solving algorithm parameter
+        self.B = B # Solving algorithm parameter
         
     def getGoalState(self, board):
         """Returns the goal state of the starting board."""
@@ -106,8 +108,8 @@ class Solver:
                 # A = 1, B = 1 -> A*
                 # A = 0, B = 1 -> GBF
                 # A = 1, B > 1 -> WA*
-                A = 1
-                B = 1
+                A = self.A
+                B = self.B
                 successor.g = current.g + 1
                 successor.h = self.getHeuristic(successor)
                 successor.f = A*successor.g + B*successor.h

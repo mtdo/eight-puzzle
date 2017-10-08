@@ -11,16 +11,22 @@ def main(argv):
     following command line arguments:
         -h: help
         -r: random board configuration
-        -i: input file with a board configurationi (/test)
+        -i: input file with a board configuration [input_file.txt]
+        -a: solving algorithm [a, wa, gbf] (A*, Weighted A*, Greedy Best-First)
+    Example:
+        python3 main.py -i ../test/medium.txt -a a
     """
     # Get command line arguments
     try:
-        opts, args = getopt.getopt(argv, "hri:")
+        opts, args = getopt.getopt(argv, "hri:a:")
     except getopt.GetoptError:
         print("main.py [-r] [-i=input_file]")
         sys.exit(1)
         
     # Solve the 8-puzzle with the given arguments
+    # Solving algorithm default arguments
+    A = 1
+    B = 1
     for opt, arg in opts:
         # Help
         if opt == "-h":
@@ -41,13 +47,28 @@ def main(argv):
             f = open(arg, "r")
             starting_state = eval(f.read())
             f.close()
+            
+        # Algorithm
+        elif opt == "-a":
+            if arg == "a":
+                A = 1
+                B = 1
+            elif arg == "wa":
+                A = 1
+                B = 2 # B > 1, can be adjusted!
+            elif arg == "gbf":
+                A = 0
+                B = 1
+            else:
+                print("Not a valid algorithm.")
+                sys.exit(1)
         
     # Initialize board
     board = Board(starting_state)
     n_zeros = len(board.getEmptyCells())
     
     # Initialize solver
-    solver = Solver(board)
+    solver = Solver(board, A = A, B = B)
     
     # Solve puzzle
     start_time = time.time()
