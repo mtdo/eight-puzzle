@@ -65,7 +65,7 @@ class Solver:
                 "Solution found with " + str(expansions) + " state expansions."
         else:
             return "Solution does not exist."
-        
+            
     def solve(self):
         """Algorithm for solving the 8-puzzle."""
         
@@ -95,7 +95,7 @@ class Solver:
             # current best
             if current.f >= best:
                 return self.checkSolution(best, current, len(CLOSED))
-            
+                
             # Move current from OPEN to CLOSED
             CLOSED.add(current)
             CLOSEDF[str(current.tiles)] = current.f
@@ -116,7 +116,7 @@ class Solver:
                 # Check if successor goal state better than current best
                 if successor.tiles == self.goal.tiles:
                     best = min(best, successor.g)
-
+                    
                 # If successor state can be found in OPEN or CLOSED with a
                 # better f-value move to next successor 
                 if self.findInSet(successor, OPENF):
@@ -124,10 +124,10 @@ class Solver:
                     
                 if self.findInSet(successor, CLOSEDF):
                     continue
-                
+                    
                 # Append valid successor to OPEN
                 OPEN.add(successor)
                 OPENF[str(successor.tiles)] = successor.f
-                          
+                
         return self.checkSolution(best, current, len(CLOSED))
 

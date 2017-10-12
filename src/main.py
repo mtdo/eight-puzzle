@@ -17,6 +17,7 @@ def main(argv):
         python3 main.py -i ../test/medium.txt -a a
     """
     # Get command line arguments
+    no_opt = True # If no option is given
     try:
         opts, args = getopt.getopt(argv, "hri:a:")
     except getopt.GetoptError:
@@ -35,21 +36,29 @@ def main(argv):
             
         # Random
         elif opt == "-r":
+            no_opt = False
+            
             # Generate a random number of zeros
             n_zeros = random.randint(1,8)
-    
+            
             # Generate a random starting state using the given amount of zeros
             starting_state = list(range(1,(9-n_zeros+1)))+[0]*(n_zeros)
             random.shuffle(starting_state)
             
         # Input file
         elif opt == "-i":
+            no_opt = False
+            
+            # Parse starting state
             f = open(arg, "r")
             starting_state = eval(f.read())
             f.close()
             
         # Algorithm
         elif opt == "-a":
+            no_opt = False
+            
+            # Set algorithm parameters
             if arg == "a":
                 A = 1
                 B = 1
@@ -62,7 +71,11 @@ def main(argv):
             else:
                 print("Not a valid algorithm.")
                 sys.exit(1)
-        
+                
+    if no_opt:
+        print("main.py [-r] [-i=input_file] [-a=algorithm]")
+        sys.exit(1)
+                
     # Initialize board
     board = Board(starting_state)
     n_zeros = len(board.getEmptyCells())
